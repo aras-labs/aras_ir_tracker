@@ -1,0 +1,10 @@
+---
+  local_ip:  "127.0.0.1"
+  remote_ip: "127.0.0.1"
+  remote_port: 10000
+
+  camera_ports:
+    - 5000
+  record: true
+  path: 'record_dir'
+  print_markers: false

@@ -1,0 +1,20 @@
+---
+  reference_by_usb: true
+  play_from_video: true
+  video_files:
+    - 'sample_dataset/cam1.avi'    
+    - 'sample_dataset/cam2.avi'
+  cameras:
+    - '0-8'
+    - '0-2'
+  calib_files:
+    - 'sample_dataset/intrinsics/5002_0.yaml'    
+    - 'sample_dataset/intrinsics/5002_1.yaml'
+  apply_KD: false
+  display: true
+  print_markers: true
+  remote_ip: "127.0.0.1"
+  remote_port: 5000
+  fps: 50
+  gain: 10
+  exposure: 30
