@@ -7,7 +7,7 @@ This project is in active development, and currently supports stereo and multi-c
 
 ## System Architecture
 
-![System Overall Architecture](doc/system_architecture.png)
+![System Overall Architecture](/doc/system_architecture.png)
 
 As shown above, the system is comprised of:
 
@@ -30,13 +30,13 @@ The systems aims to accurately track the 3D positions of one or several markers 
 All cameras point to a common aria in the workspace and their relative poses with respect to each other are known (estimated during our [calibration process]()). At each point in time, the observed markers in each camera frame is casted as ray onto the 3D world. The intersections of these rays (in the least square sense) are candidate 3D positions of the markers (there can be ambagious situations that should be resolved). This has been illustrated bellow for a stereo setup:
 
 <p align="center">
-  <img width="460" height="300" src="doc/stereo_ray_intersection.jpg">
+  <img width="460" height="300" src="/doc/stereo_ray_intersection.jpg">
 </p>
 
 For a multi-camera system, this intersection is like bellow (image taken from the [OptiTrack documentation](https://v22.wiki.optitrack.com/index.php?title=Reconstruction_and_2D_Mode)):
 
 <p align="center">
-  <img width="460" height="300" src="doc/optitrack_rays.png">
+  <img width="460" height="300" src="/doc/optitrack_rays.png">
 </p>
 
 The output of the system after this stage is a single marker location (the current version of the system) or a point could representing several markers. Assuming a known and rigid transformation between these markers, we can match the observed point clouds against the reference model and estimate the 6-DoF pose of the object to which the makers are attached to.  
