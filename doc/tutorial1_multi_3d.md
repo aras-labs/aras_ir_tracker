@@ -1,31 +1,31 @@
 # Multi-Camera Calibration and Tracking (3D)
 
-This tutorial focuses on the procedure of setting up a system comprised of several cameras that observed a single IR marker from various perspective and track its 3D position in space. 
+This tutorial focuses on the procedure of setting up a system comprised of several cameras that observe a single IR marker from various perspectives and track its 3D position in space. 
 
 ## Setup
 The camera layout of the example configuration is shown bellow. As it can be seen, the system is comprised of six PS3-eye cameras installed on four corners of a rectangle space and two extra cameras installed on the ceiling and center of the rectangle and looking downwards. 
 
-add image here
+<p align="center">
+  <img src="../doc/ps3_eye_multi_camera.png">
+</p>
 
-The system architecture of this example is also shown in the following image. The six PS3-eye cameras are synchronized using our ESPSync trigger generator and NTP server. Two pair of cameras on the two sides of the rectangular workspace are attached to independent computers and the stereo camera on the roof is attached to the server PC. These PCs are connected to each other and to the ESPSync board using an ethernet switch and all are synchronized against the ESPSync's clock through a continuously running NTP daemon who is in contact with the ESPSync. 
-
-add image here
+The system architecture of this example is also shown in the image. The six PS3-eye cameras are synchronized using our ESPSync trigger generator and NTP server. Two pair of cameras on the two sides of the rectangular workspace are attached to independent computers, and the stereo camera on the roof is attached to the server PC. These PCs are connected to each other and to the ESPSync board using an ethernet switch and all are synchronized against the ESPSync's clock through a continuously running NTP daemon who is in contact with the ESPSync. 
 
 ## Calibration
 
-Before we can track the 3D position of our robots (marker), we need to have the relative poses of the cameras in the system. To do so, first we need to collect a calibration dataset. This dataset is contains the movement of a single marker in front of the cameras at various locations and is recorded by the *udp_aggregator_node* as explained in [here](link). 
+Before we can track the 3D position of our robots (marker), we need to have the relative poses of the cameras in the system. To do so, first we need to collect a calibration dataset. This dataset contains the movement of a single marker in front of the cameras at various locations and is recorded by the *udp_aggregator_node* as explained in [here](link). 
 
 ### Theory of Operation
 
-During the calibration, we rely on the epipolar geometry between pairs of cameras to define constraining matrices and then, geometrcical transformations that define the relative configuration of the cameras with respect to each other. As shown in the following image from the [Multi-View Geometry Book](), tge epipolar constraint relates the pixel position of a marker observed from two poses (or two distinct cameras). 
+During the calibration, we rely on the epipolar geometry between pairs of cameras to define constraining matrices and then, geometrcical transformations that define the relative configuration of the cameras with respect to each other. As shown in the following image from the [Multi-View Geometry Book](https://www.amazon.com/Multiple-View-Geometry-Computer-Vision/dp/0521540518), the epipolar constraint relates the pixel position of a marker observed from two poses (or two distinct cameras). 
 
-add image here
+![](../doc/fundamental_constraint.webp)
 
 This constraint is expressed through the following equation:
 
 $${s^\prime}^T F x =0$$
 
-Where $F$ is a rank 2 $3\times3$ fundamental matrix. The fundamental matrix is related to the essential matrix $E$ as follows:
+Where $F$ is a rank-2 $3\times3$ fundamental matrix. The fundamental matrix is related to the essential matrix $E$ as follows:
 
 $$E = {K_1}^TFK_2$$
 
@@ -47,15 +47,15 @@ where $[.]_{\times}$ is the skew symmetric representation of a matrix as defined
 
 For each pair of camera in the system, we cary out this decomposition to find the extrinsic parameters (relative poses) of all camera pairs. Using these parameters, the camera intrinsic parameters, and undistorted pixel observations of each pair we compute one point cloud per each camera pair. 
 
-The reconstructed point clouds for each camera pair differ from each other in terms of scale and perspective. As shown in the following image, we use the Umeyama algorithm to find the $SIM(3)$ alignment parameters between these point clouds and fuse them together through averaging to get our an initial point cloud reconstruction:
+The reconstructed point clouds for each camera pair differ from each other in terms of scale and perspective. As shown in the following image, we use the Umeyama algorithm to find the $SIM(3)$ alignment parameters between these point clouds and fuse them together through averaging to get an initial point cloud reconstruction:
 
-add image here
+![](../doc/multi-view-pc.png)
 
 Using the estimated relative scales from the Umeyama algorithm, we then compute a new set of stereo extrinsic parameters where translation value $T_i$ is multiplied by the point cloud scale $s_i$ where $i$ is the number of camera pairs. This effectively unifies the scales of the point clouds computed based on the new set of extrinsic parameters. 
 
 In the end, we use GTSAM to define a factor graph that represents a bundle adjustment problem that further refines the camera poses and reconstructed marker positions. Specifically, we generate a factor graph as shown bellow where the nodes represent the camera poses and landmark positions and edges represent the reprojection of the markers on the cameras and the relative transformation of the cameras with respect to each other from the extrinsic parameters computed previously.
 
-Add image here
+![](../doc/multi-camera-factor-graph.png)
 
 The final solution of the factor graph is taken as the final extrinsic calibration results which is the pose of each camera with respect to a reference camera (one of the cameras in the system chosen arbitrarily). 
 
