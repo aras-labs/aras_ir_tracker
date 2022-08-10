@@ -46,11 +46,11 @@ Based on the chosen camera hardware, required workspace, and the speed of the ma
 
 Initially and if you want to get a sense on how the system works, you can use our sample datasets to run the online trackers nodes, and offline reconstruction/calibration jupyter notebooks. For further details, refer to the following tutorials:
 
-- [Tutorial #1: Multi-View Calibration and Tracking Using the Sample Dataset (3D)]()
+- [Tutorial #1: Multi-View Calibration and Tracking (3D)]()
 
-- [Tutorial #2: Stereo Calibration and Tracking Using the Sample Dataset (3D)]()
+- [Tutorial #2: Stereo Calibration and Tracking (3D)]()
 
-- [Tutorial #3: Multi-Camera/Stereo System Setup and Calibration Based on the PS3-Eye Sensor]()
+- [Tutorial #3: Multi-Camera/Stereo System Setup and Calibration (PS3-Eye Sensor)]()
 
 More example and tutorials are to be added in the future ... 
 ## Citation
