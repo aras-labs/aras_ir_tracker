@@ -48,7 +48,7 @@ Initially and if you want to get a sense on how the system works, you can use ou
 
 - [Tutorial #1: Multi-View Calibration and Tracking (3D)](/doc/tutorial1_multi_3d.md)
 
-- [Tutorial #2: Stereo Calibration and Tracking (3D)](/doc/tutorial1_multi_3d.md)
+- [Tutorial #2: Stereo Calibration and Tracking (3D)](/doc/tutorial1_stereo_3d.md)
 
 - [Tutorial #3: Multi-Camera/Stereo System Setup and Calibration (PS3-Eye Sensor)](/main/doc/tutorial2_stereo_3d.md)
 
