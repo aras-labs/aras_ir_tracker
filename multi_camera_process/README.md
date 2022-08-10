@@ -1,7 +1,4 @@
-# Stereo Pose Tracker
-
-This node uses the tracked markers from two cameras to reconstruct the 3D position of a single marker or the 6-D pose of a set of markers. The theory of operation for this node is described here.
-
-## Configuration Parameters
-
-- Todo
+# Multi Camera Pipeline
+The online and offline reconstruction and calibration processes are hosted in this folder as follows:
+- **calibration.ipynb** A notebook that implements the multi-camera calibration procedure as explaned [here](/doc/tutorial1_multi_3d.md).
+- **reconstruction.ipynb** A notebook that uses the outputs of the calibration stage and reconstructs the 3D locations of the markers as explaned [here](/doc/tutorial1_multi_3d.md).
