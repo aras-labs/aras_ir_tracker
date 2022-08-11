@@ -53,7 +53,7 @@ The reconstructed point clouds for each camera pair differ from each other in te
 
 Using the estimated relative scales from the Umeyama algorithm, we then compute a new set of stereo extrinsic parameters where translation value $T_i$ is multiplied by the point cloud scale $s_i$ where $i$ is the number of camera pairs. This effectively unifies the scales of the point clouds computed based on the new set of extrinsic parameters. 
 
-In the end, we use GTSAM to define a factor graph that represents a bundle adjustment problem that further refines the camera poses and reconstructed marker positions. Specifically, we generate a factor graph as shown bellow where the nodes represent the camera poses and landmark positions and edges represent the reprojection of the markers on the cameras and the relative transformation of the cameras with respect to each other from the extrinsic parameters computed previously.
+In the end, we use GTSAM to define a factor graph that represents a bundle adjustment problem that refines the camera poses and reconstructed marker positions. Specifically, we generate a factor graph as shown bellow where the nodes represent the camera poses and landmark positions and edges represent the reprojection of the markers on the cameras and the relative transformation of the cameras with respect to each other from the extrinsic parameters computed previously. In the following image, $C_i$ nodes represent the camera poses (in this example 6 cameras) and $L_i$ represent the landmark positions (3D marker locations) which are constrained to each other through the black reprojection factors.
 
 ![](../doc/multi-camera-factor-graph.png)
 
