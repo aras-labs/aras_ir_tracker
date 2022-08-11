@@ -1,7 +1,7 @@
 # ARAS IR-Tracker
 ## Introduction
 
-ARAS IR-Tracker is modular infrared motion capture system for robotic and healthcare applications. It is developed and built at [Advanced Robotics and Automation Systems lab ](aras.kntu.ac.ir) at K.N.Toosi University of Technology in Tehran (link). The system is designed to be modular with each module encapsulating isolated functionalities.
+ARAS IR-Tracker is a modular infrared motion capture system for robotic and healthcare applications. It is developed and built at [Advanced Robotics and Automation Systems lab ](aras.kntu.ac.ir) at K.N.Toosi University of Technology in Tehran (link). The system is designed to be modular with each module encapsulating isolated functionalities.
 
 This project is in active development, and currently supports stereo and multi-camera tD tracking of a single marker. Support for full 6DoF tracking and IMU fusion for improved robustness are on the list of future works. 
 
