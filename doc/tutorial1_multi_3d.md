@@ -23,7 +23,7 @@ During the calibration, we rely on the epipolar geometry between pairs of camera
 
 This constraint is expressed through the following equation:
 
-$${s^\prime}^T F x =0$$
+$${x^\prime}^T F x =0$$
 
 Where $F$ is a rank-2 $3\times3$ fundamental matrix. The fundamental matrix is related to the essential matrix $E$ as follows:
 

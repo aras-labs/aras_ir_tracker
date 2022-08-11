@@ -62,4 +62,10 @@ As done for the calibration procedure, the implementation of the reconstruction 
 
 ## Real-Time Tracking
 
-To be added ... The procedure is simple, we just need to run the functions in the reconstruction notebook for each observation value fed to the system in an online manner. 
+The procedure is simple, we just need to run the functions in the reconstruction notebook for each observation value fed to the system in an online manner.As shown in the following image, The USB cameras are connected to the computer through the USB interface. The *marker_detector* node on the computer receives the frames from the camera and extracts the pixel locations of the observed markers in the images. 
+
+![](../doc/ps3_stereo_tracker.png)
+
+The components of the system should be configured according to the procedure and configuration parameters explained in the corresponding node folders in the repository. Specifically, the marker tracker node should be configured to open two USB cameras (given the USB port ID). After detecting the markers from the image, their 2D locations are sent to the UDP aggregator. In this application, the UDP aggregator is not essentially needed for the functionality of the system and can be used for recording the observed data for later usage. 
+
+The output of the UDP aggregator is then configured to send the observation data to the *stereo_tracker_3d* node. This node gets the pixel observations and uses the calibration parameters to triangulate the marker locations. Finally, the output of the node can be optionally sent to downstream nodes through inter-process connection ports based on UDP. 
