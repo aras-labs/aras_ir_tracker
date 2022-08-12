@@ -19,7 +19,10 @@ class udp_telemetry():
         markers_per_frame = [markers.shape[0] for markers in markers_list]
         msg_format=f'Qli{len(markers_per_frame)}i{2*sum(markers_per_frame)}d'
         marker_data=np.vstack(markers_list)
-        arguments =  [msg_format] + [int(stamp*1000000), self.transmit_counter] + [num_frames] + markers_per_frame + marker_data.reshape(-1).tolist()
+        
+        arguments =  [msg_format] + [int(stamp*1000000), self.transmit_counter] + [num_frames] + \
+                                     markers_per_frame + marker_data.reshape(-1).tolist()
+
         data=struct.pack(*arguments)
         self.out_socket.sendto(data, (self.OUT_IP, self.OUT_PORT))
 

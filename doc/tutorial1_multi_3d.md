@@ -82,7 +82,7 @@ In theory, reconstruction requires a subset of the steps taken in the calibratio
 
 ## implementation
 
-As done for the calibration procedure, the implementation of the reconstruction steps is carried out using python and can be found in the [reconstruction.ipynb]() jupyter notebook. To run this notebook, you can either collect your own dataset for your specific system setup (e.x. as explained [here]()) or you can use our dataset that is provided [here]() as a sample. By default, the notebooks use the sample datasets to illustrate the procedure.
+As done for the calibration procedure, the implementation of the reconstruction steps is carried out using python and can be found in the [reconstruction.ipynb]() jupyter notebook. To run this notebook, you can either collect your own dataset for your specific system setup or you can use our provided sample dataset. By default, the notebooks use the sample datasets to illustrate the procedure.
 
 ## Real-Time Tracking
 
